@@ -31,6 +31,13 @@
       stat1: 'la media su Treatwell',
       stat2: 'recensioni verificate',
       stat3: 'giorni su 7: dal martedì al sabato',
+      alt1: 'Il salone di via Pastrengo: poltrone nere, pareti bianche e mattoni a vista',
+      alt2: 'La sala grande con l’orologio e il muro in mattoni',
+      alt3: 'La postazione con lo specchio tondo',
+      alt4: 'L’ingresso luminoso con le vetrine su strada',
+      alt5: 'I prodotti Davines sul banco in legno',
+      alt6: 'Il lavaggio: shampoo e massaggio al lavatesta',
+      g_note: 'Foto dal profilo Treatwell del salone.',
       services_title: 'Servizi e listino',
       s1: 'Piega',
       s2: 'Taglio e piega',
@@ -94,6 +101,13 @@
       stat1: 'average rating on Treatwell',
       stat2: 'verified reviews',
       stat3: 'days a week: Tuesday to Saturday',
+      alt1: 'The salon on Via Pastrengo: black chairs, white walls and exposed brick',
+      alt2: 'The main room with the clock and the brick wall',
+      alt3: 'The station with the round mirror',
+      alt4: 'The bright entrance with street-facing windows',
+      alt5: 'Davines products on the wooden counter',
+      alt6: 'The wash: shampoo and massage at the basin',
+      g_note: 'Photos from the salon’s Treatwell profile.',
       services_title: 'Services & price list',
       s1: 'Blow-dry',
       s2: 'Cut & blow-dry',
@@ -151,6 +165,10 @@
     document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
       var key = el.getAttribute('data-i18n-aria');
       if (dict[key] !== undefined) el.setAttribute('aria-label', dict[key]);
+    });
+    document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n-alt');
+      if (dict[key] !== undefined) el.setAttribute('alt', dict[key]);
     });
     document.querySelectorAll('.lang-btn').forEach(function (btn) {
       var active = btn.getAttribute('data-lang') === lang;
