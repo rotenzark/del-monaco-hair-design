@@ -186,6 +186,39 @@
 
   if (current !== 'it') applyLang(current);
 
+  /* ---------- intro "la tinta" ---------- */
+
+  var intro = document.getElementById('intro');
+  if (intro) {
+    var introReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (introReduced) {
+      intro.remove();
+    } else {
+      var introDone = false;
+      var viaIntro = function () {
+        intro.classList.add('intro--via');
+        document.documentElement.classList.add('intro-done');
+      };
+      var finishIntro = function () {
+        if (introDone) return;
+        introDone = true;
+        clearTimeout(viaTimer);
+        clearTimeout(endTimer);
+        document.documentElement.classList.add('intro-done');
+        document.body.classList.remove('intro-lock');
+        intro.remove();
+        window.removeEventListener('pointerdown', finishIntro, true);
+        window.removeEventListener('keydown', finishIntro, true);
+      };
+      document.documentElement.classList.add('has-intro');
+      document.body.classList.add('intro-lock');
+      var viaTimer = setTimeout(viaIntro, 2050);
+      var endTimer = setTimeout(finishIntro, 3000);
+      window.addEventListener('pointerdown', finishIntro, true);
+      window.addEventListener('keydown', finishIntro, true);
+    }
+  }
+
   /* ---------- copyright dinamico ---------- */
 
   var nowYear = new Date().getFullYear();

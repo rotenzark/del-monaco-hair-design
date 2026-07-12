@@ -76,6 +76,122 @@ a { color: inherit; }
 }
 .skip-link:focus { top: 12px; }
 
+/* ============ INTRO "LA TINTA" ============ */
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: var(--avorio);
+  overflow: hidden;
+}
+
+body.intro-lock { overflow: hidden; }
+
+.tinte {
+  display: flex;
+  height: 100%;
+}
+
+.tinta {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  padding: 26px 18px;
+  transform: translateY(-102%);
+  animation: tinta-giu 0.6s cubic-bezier(0.5, 0, 0.2, 1) forwards;
+}
+.t-miele   { background: var(--miele);   animation-delay: 0.08s; }
+.t-rame    { background: var(--rame);    animation-delay: 0.20s; }
+.t-castano { background: var(--castano); animation-delay: 0.32s; }
+.t-moka    { background: var(--moka);    animation-delay: 0.44s; }
+.t-nero    { background: var(--bruno);   animation-delay: 0.56s; }
+
+@keyframes tinta-giu {
+  to { transform: translateY(0); }
+}
+
+.tinta span {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--avorio-su-scuro);
+  opacity: 0;
+  animation: tinta-nome 0.4s ease 1.0s forwards;
+}
+.t-miele span { color: var(--bruno); }
+@keyframes tinta-nome {
+  to { opacity: 0.9; }
+}
+
+.intro-marca {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+  opacity: 0;
+  animation: marca-in 0.6s ease 1.15s forwards;
+  transition: opacity 0.3s;
+}
+@keyframes marca-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.im-nome {
+  font-family: var(--f-display);
+  font-size: clamp(44px, 9vw, 96px);
+  line-height: 1;
+  color: var(--avorio-su-scuro);
+  text-shadow: 0 2px 24px rgba(36, 24, 18, 0.35);
+}
+.im-sub {
+  font-size: clamp(13px, 2vw, 18px);
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--avorio-su-scuro);
+  opacity: 0.85;
+}
+
+/* uscita: la tinta si sciacqua via */
+.intro--via .tinta {
+  animation: tinta-via 0.6s cubic-bezier(0.6, 0, 0.3, 1) forwards;
+}
+.intro--via .t-miele   { animation-delay: 0.00s; }
+.intro--via .t-rame    { animation-delay: 0.09s; }
+.intro--via .t-castano { animation-delay: 0.18s; }
+.intro--via .t-moka    { animation-delay: 0.27s; }
+.intro--via .t-nero    { animation-delay: 0.36s; }
+@keyframes tinta-via {
+  from { transform: translateY(0); }
+  to   { transform: translateY(102%); }
+}
+.intro--via .intro-marca { opacity: 0; animation: none; }
+
+/* ingresso hero orchestrato con la fine dell'intro */
+.has-intro .hero-inner {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.intro-done .hero-inner {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.7s ease 0.25s, transform 0.7s ease 0.25s;
+}
+.has-intro .cartella-hero .sw { animation-play-state: paused; }
+.intro-done .cartella-hero .sw { animation-play-state: running; }
+
+@media (prefers-reduced-motion: reduce) {
+  .intro { display: none; }
+  .has-intro .hero-inner { opacity: 1; transform: none; }
+}
+
 /* ============ TOPBAR ============ */
 
 .topbar {
